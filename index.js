@@ -42,7 +42,7 @@ async function getCompletion(prompt) {
 			
 		});
 
-		return prediction.data.choices[0].text
+		return generatedImg
 	} catch (error) {
 		console.log("Failed to get completion - ", error.message)
 		return error
