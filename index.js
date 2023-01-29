@@ -38,10 +38,8 @@ async function getCompletion(prompt) {
         	n: 1,
         	size: "1024x1024",
         });
-
-	return image.data.data[0].url
 	console.log(image.data.data[0].url)
-	}
+	return image.data.data[0].url
 }
 
 async function sendMessage(msg, from, id) {
