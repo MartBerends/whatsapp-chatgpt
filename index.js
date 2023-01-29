@@ -41,7 +41,7 @@ async function getCompletion(prompt) {
         		size: "1024x1024"
 			
 		});
-		im = generatedImg["data"][0]
+		im = generatedImg.data[0]
 		image_url = im["url"]
 		console.log("url", image_url)
 		return image_url
