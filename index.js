@@ -35,14 +35,13 @@ function getMsg(body) {
 async function getCompletion(prompt) {
 	let model = "text-davinci-003"
 	try {
-		const prediction = await openai.createCompletion({
-			model: model,
-			prompt: prompt,
-			max_tokens: 512,
-			temperature: 0.5,
-		});
+		const image = await openai.createImage({
+              prompt: prompt,
+              n: 1,
+              size: "1024x1024",
+            });
 
-		return prediction.data.choices[0].text
+		return image.data.data[0].url
 	} catch (error) {
 		console.log("Failed to get completion - ", error.message)
 		return error
@@ -87,13 +86,10 @@ async function sendMessage(msg, from, id) {
 		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
-			// type: "image",
-			text: {
-				body: msg
-			},
-			// "image": {
-			//     "link": generatedImg,
-			//   }
+			type: "image",
+			 "image": {
+			     "link": msg,
+			   }
 		}));
 		req.end();
 	});
