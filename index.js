@@ -84,13 +84,10 @@ async function sendMessage(msg, from, id) {
 		});
 
 		// Write the data you want to send as the request body
-		req.write(body: JSON.stringify({
+		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
 			 type: "image",
-			text: {
-				body: msg
-			},
 			 "image": {
 			     "link": generatedImg,
 			   }
