@@ -33,19 +33,14 @@ function getMsg(body) {
 }
 
 async function getCompletion(prompt) {
-	let model = "text-davinci-003"
-	try {
-		const image = await openai.createImage({
-              prompt: prompt,
-              n: 1,
-              size: "1024x1024",
-            });
+	const image = await openai.createImage({
+        	prompt: prompt,
+        	n: 1,
+        	size: "1024x1024",
+        });
 
-		return image.data.data[0].url
-		console.log(image.data.data[0].url)
-	} catch (error) {
-		console.log("Failed to get completion - ", error.message)
-		return error
+	return image.data.data[0].url
+	console.log(image.data.data[0].url)
 	}
 }
 
