@@ -89,7 +89,7 @@ async function sendMessage(msg, from, id) {
 			to: from,
 			 type: "image",
 			 "image": {
-			     "link": generatedImg,
+			     "link": msg,
 			   }
 		}));
 		
