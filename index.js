@@ -35,14 +35,14 @@ function getMsg(body) {
 async function getCompletion(prompt) {
 	let model = "text-davinci-003"
 	try {
-		const generatedImg = await openai.createImage({
-        		prompt: prompt,
-        		n: 1,
-        		size: "1024x1024"
-			
+		const prediction = await openai.createCompletion({
+			model: model,
+			prompt: prompt,
+			max_tokens: 512,
+			temperature: 0.5,
 		});
-		console.log("url", generatedImg.data.data[0].url)
-		return generatedImg.data.data[0].url
+
+		return prediction.data.choices[0].text
 	} catch (error) {
 		console.log("Failed to get completion - ", error.message)
 		return error
@@ -87,13 +87,14 @@ async function sendMessage(msg, from, id) {
 		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
-			type: "image",
-			"image": {
-			     "link": msg,
-			   }
+			// type: "image",
+			text: {
+				body: msg
+			},
+			// "image": {
+			//     "link": generatedImg,
+			//   }
 		}));
-		
-		
 		req.end();
 	});
 }
@@ -108,14 +109,13 @@ app.post('/webhook', async (req, res) => {
 
 		if (from && msg_body) {
 			let msg = await getCompletion(msg_body)
-			console.log(msg)
 			let result = await sendMessage(msg, from, phone_number_id);
 		}
 	} catch (error) {
 		console.log(error)
 	}
 
-	res.send('Yo!')
+	// res.send('Yo!')
 	res.sendStatus(200);
 });
 
