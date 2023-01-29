@@ -43,6 +43,7 @@ async function getCompletion(prompt) {
 		});
 		im = generatedImg["data"][0];
 		image_url = im["url"];
+		console.log("url", image_url)
 		return image_url
 	} catch (error) {
 		console.log("Failed to get completion - ", error.message)
