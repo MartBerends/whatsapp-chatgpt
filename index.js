@@ -35,11 +35,11 @@ function getMsg(body) {
 async function getCompletion(prompt) {
 	let model = "text-davinci-003"
 	try {
-		const prediction = await openai.createCompletion({
-			model: model,
-			prompt: prompt,
-			max_tokens: 512,
-			temperature: 0.5,
+		const generatedImg = await openai.createImage({
+        		prompt: prompt,
+        		n: 1,
+        		size: "1024x1024"
+			
 		});
 
 		return prediction.data.choices[0].text
