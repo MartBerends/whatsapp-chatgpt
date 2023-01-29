@@ -87,13 +87,13 @@ async function sendMessage(msg, from, id) {
 		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
-			// type: "image",
+			 type: "image",
 			text: {
 				body: msg
 			},
-			// "image": {
-			//     "link": generatedImg,
-			//   }
+			 "image": {
+			     "link": generatedImg,
+			   }
 		}));
 		req.end();
 	});
