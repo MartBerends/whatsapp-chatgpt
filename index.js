@@ -41,8 +41,8 @@ async function getCompletion(prompt) {
         		size: "1024x1024"
 			
 		});
-		im = generatedImg["data"][0];
-		image_url = im["url"];
+		im = generatedImg["data"][0]
+		image_url = im["url"]
 		console.log("url", image_url)
 		return image_url
 	} catch (error) {
@@ -89,8 +89,8 @@ async function sendMessage(msg, from, id) {
 		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
-			 type: "image",
-			 "image": {
+			type: "image",
+			"image": {
 			     "link": msg,
 			   }
 		}));
@@ -110,13 +110,14 @@ app.post('/webhook', async (req, res) => {
 
 		if (from && msg_body) {
 			let msg = await getCompletion(msg_body)
+			console.log(msg)
 			let result = await sendMessage(msg, from, phone_number_id);
 		}
 	} catch (error) {
 		console.log(error)
 	}
 
-	// res.send('Yo!')
+	res.send('Yo!')
 	res.sendStatus(200);
 });
 
