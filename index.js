@@ -77,6 +77,7 @@ async function sendMessage(msg, from, id) {
 		});
 
 		// Write the data you want to send as the request body
+		console.log(image.data.data[0].url)
 		req.write(JSON.stringify({
 			messaging_product: "whatsapp",
 			to: from,
@@ -91,7 +92,7 @@ async function sendMessage(msg, from, id) {
 
 app.post('/webhook', async (req, res) => {
 
-	console.log("requet", req.body)
+	console.log("request", req.body)
 	try {
 		const body = req.body;
 
